@@ -51,15 +51,44 @@ public class Posrednik {
 
         if (sumaPopyt==sumaPodaz) {
 
-            System.out.println(" Bilans ");
             return true;
         }
         else{
-            System.out.println(" Brak bilansu ");
             return false;
         }
     }
 
-    public void rozwiaz(){
+    public void fikcyjniBohaterowie(){
+
+        if(bilans()==false){
+            int nowaIloscDostawcow=dane.getIloscDostawcow()+1;
+            int nowaIloscOdbiorcow=dane.getIloscOdbiorcow()+1;
+
+            int [][] nowyZysk = new int[nowaIloscDostawcow][nowaIloscOdbiorcow]; //tworzymy większą tablice
+
+            for(int i=0; i<nowaIloscDostawcow;i++){
+                for (int j=0; j<nowaIloscOdbiorcow;j++){
+
+                    if(j>dane.getIloscOdbiorcow()-1||i>dane.getIloscDostawcow()-1)nowyZysk[i][j]=0; //uzupelniamy zyski przy fikcyjnych bohaterach zerami
+                    else {
+                        nowyZysk[i][j]=zysk[i][j];
+                    }
+
+                }
+            }
+
+            System.out.println("\n");
+
+            for(int i=0; i<nowaIloscDostawcow;i++){
+                for (int j=0; j<nowaIloscOdbiorcow;j++){
+
+                    System.out.print(nowyZysk[i][j]+ " ");
+
+                }
+                System.out.println();
+            }
+
+
+        }
     }
 }

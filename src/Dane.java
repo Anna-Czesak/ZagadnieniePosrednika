@@ -45,6 +45,34 @@ public class Dane {
         return kosztZakupu;
     }
 
+    public void setIloscOdbiorcow(int iloscOdbiorcow) {
+        this.iloscOdbiorcow = iloscOdbiorcow;
+    }
+
+    public void setIloscDostawcow(int iloscDostawcow) {
+        this.iloscDostawcow = iloscDostawcow;
+    }
+
+    public void setKosztTransportu(int[][] kosztTransportu) {
+        this.kosztTransportu = kosztTransportu;
+    }
+
+    public void setCenaSprzedazy(int[] cenaSprzedazy) {
+        this.cenaSprzedazy = cenaSprzedazy;
+    }
+
+    public void setKosztZakupu(int[] kosztZakupu) {
+        this.kosztZakupu = kosztZakupu;
+    }
+
+    public void setPopyt(int[] popyt) {
+        this.popyt = popyt;
+    }
+
+    public void setPodaz(int[] podaz) {
+        this.podaz = podaz;
+    }
+
     public void ustawDane(){
         Scanner scanner = new Scanner(System.in);
 
