@@ -1,90 +1,81 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public class Posrednik {
 
-    Dane dane;
-    int [][] zysk;
+    Data data;
+    int [][] profit;
 
-    public Posrednik(Dane dane) {
-        this.dane = dane;
+    public Posrednik(Data dane) {
+        this.data = dane;
     }
-    public Posrednik() {
-    }
+    public Posrednik() {}
 
-    public void obliczZysk(){
-        zysk = new int[dane.getIloscDostawcow()][dane.getIloscOdbiorcow()];
-
-        System.out.println();
-        for(int i=0; i<dane.getIloscDostawcow();i++){
-
-            for (int j=0; j<dane.getIloscOdbiorcow();j++){
-                zysk[i][j]=dane.getCenaSprzedazy()[j]-dane.getKosztZakupu()[i]-dane.getKosztTransportu()[i][j];
-            }
-        }
+    public void showProfits(){
         System.out.println();
 
         System.out.println(" ZYSK POSREDNIKA ");
 
         System.out.print("\t");
-        for(int i=0; i<dane.getIloscOdbiorcow(); i++) System.out.print("O"+(i+1)+ "\t"); //tworzenie tabeli wsadzic do funkcji
+        for(int i = 0; i< data.getNumberOfRecipients(); i++) System.out.print("O"+(i+1)+ "\t"); //tworzenie tabeli wsadzic do funkcji
 
-        for(int i=0; i<dane.getIloscDostawcow();i++){
+        for(int i = 0; i< data.getNumberOfSuppliers(); i++){
             System.out.println();
             System.out.print("D"+ (i+1)+"\t");
-            for (int j=0; j<dane.getIloscOdbiorcow();j++){
-                System.out.print(zysk[i][j]+ "\t");
+            for (int j = 0; j< data.getNumberOfRecipients(); j++){
+                System.out.print(profit[i][j]+ "\t");
             }
-
         }
     }
 
-    public boolean bilans(){
+    public void calculateProfits(){
+        profit = new int[data.getNumberOfSuppliers()][data.getNumberOfRecipients()];
+
+        System.out.println();
+        for(int i = 0; i< data.getNumberOfSuppliers(); i++){
+
+            for (int j = 0; j< data.getNumberOfRecipients(); j++){
+                profit[i][j]= data.getSellingPrice()[j]- data.getBuyingCost()[i]- data.getShippingCost()[i][j];
+            }
+        }
+        showProfits();
+    }
+
+    public boolean calculateBilans(){
 
         int sumaPopyt=0;
         int sumaPodaz=0;
 
-        for(int i=0;i<dane.getPopyt().length;i++)sumaPopyt+=dane.getPopyt()[i];
-        for(int i=0;i<dane.getPodaz().length;i++)sumaPodaz+=dane.getPodaz()[i];
+        for(int i = 0; i< data.getDemand().length; i++)sumaPopyt+= data.getDemand()[i];
+        for(int i = 0; i< data.getSupply().length; i++)sumaPodaz+= data.getSupply()[i];
 
         if (sumaPopyt==sumaPodaz) {
             System.out.println("Bilans zachowany");
             return true;
         }
         else{
-            System.out.println("\nBrak bilansu, dodajemy fikcyjnych bohaterow\n");
+            System.out.println("\n\nBrak bilansu, dodajemy fikcyjnych bohaterow: D"+(data.getNumberOfSuppliers()+1)+", O"+(data.getNumberOfRecipients()+1));
             return false;
         }
     }
 
-    public void fikcyjniBohaterowie(){
+    public void fictionalHeroes(){
 
-            int nowaIloscDostawcow=dane.getIloscDostawcow()+1;
-            int nowaIloscOdbiorcow=dane.getIloscOdbiorcow()+1;
+            int nowaIloscDostawcow= data.getNumberOfSuppliers()+1;
+            int nowaIloscOdbiorcow= data.getNumberOfRecipients()+1;
 
             int [][] nowyZysk = new int[nowaIloscDostawcow][nowaIloscOdbiorcow]; //tworzymy większą tablice
 
             for(int i=0; i<nowaIloscDostawcow;i++){
                 for (int j=0; j<nowaIloscOdbiorcow;j++){
 
-                    if(j>dane.getIloscOdbiorcow()-1||i>dane.getIloscDostawcow()-1)nowyZysk[i][j]=0; //uzupelniamy zyski przy fikcyjnych bohaterach zerami
+                    if(j> data.getNumberOfRecipients()-1||i> data.getNumberOfSuppliers()-1)nowyZysk[i][j]=0; //uzupelniamy zyski przy fikcyjnych bohaterach zerami
                     else {
-                        nowyZysk[i][j]=zysk[i][j];
+                        nowyZysk[i][j]= profit[i][j];
                     }
-
                 }
             }
-            this.zysk = nowyZysk;
+            this.profit = nowyZysk;
+            this.data.setNumberOfSuppliers(nowaIloscDostawcow);
+            this.data.setNumberOfRecipients(nowaIloscOdbiorcow);
 
-            for(int i=0; i<nowaIloscDostawcow;i++){
-                for (int j=0; j<nowaIloscOdbiorcow;j++){
-
-                    System.out.print(zysk[i][j]+ " ");
-
-                }
-                System.out.println();
-            }
+            showProfits();
     }
 }

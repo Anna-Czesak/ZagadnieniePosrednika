@@ -1,14 +1,14 @@
 public class Main {
     public static void main(String[] args){
 
-        Dane dane = new Dane();
+        Data dane = new Data();
         dane.ustawDane();
         dane.wyswietlDane();
 
         Posrednik rozwiazanie = new Posrednik(dane);
-        rozwiazanie.obliczZysk();
+        rozwiazanie.calculateProfits();
 
-        if(rozwiazanie.bilans()==false) rozwiazanie.fikcyjniBohaterowie(); //jesli nie ma bilansu dodajemy fikcyjnych bohaterów
+        if(rozwiazanie.calculateBilans()==false) rozwiazanie.fictionalHeroes(); //jesli nie ma bilansu dodajemy fikcyjnych bohaterów
 
 
 
