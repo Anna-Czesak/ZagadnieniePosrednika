@@ -50,17 +50,17 @@ public class Posrednik {
         for(int i=0;i<dane.getPodaz().length;i++)sumaPodaz+=dane.getPodaz()[i];
 
         if (sumaPopyt==sumaPodaz) {
-
+            System.out.println("Bilans zachowany");
             return true;
         }
         else{
+            System.out.println("\nBrak bilansu, dodajemy fikcyjnych bohaterow\n");
             return false;
         }
     }
 
     public void fikcyjniBohaterowie(){
 
-        if(bilans()==false){
             int nowaIloscDostawcow=dane.getIloscDostawcow()+1;
             int nowaIloscOdbiorcow=dane.getIloscOdbiorcow()+1;
 
@@ -76,19 +76,15 @@ public class Posrednik {
 
                 }
             }
-
-            System.out.println("\n");
+            this.zysk = nowyZysk;
 
             for(int i=0; i<nowaIloscDostawcow;i++){
                 for (int j=0; j<nowaIloscOdbiorcow;j++){
 
-                    System.out.print(nowyZysk[i][j]+ " ");
+                    System.out.print(zysk[i][j]+ " ");
 
                 }
                 System.out.println();
             }
-
-
-        }
     }
 }

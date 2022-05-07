@@ -7,8 +7,10 @@ public class Main {
 
         Posrednik rozwiazanie = new Posrednik(dane);
         rozwiazanie.obliczZysk();
-        rozwiazanie.bilans();
-        rozwiazanie.fikcyjniBohaterowie();
+
+        if(rozwiazanie.bilans()==false) rozwiazanie.fikcyjniBohaterowie(); //jesli nie ma bilansu dodajemy fikcyjnych bohaterów
+
+
 
     }
 
