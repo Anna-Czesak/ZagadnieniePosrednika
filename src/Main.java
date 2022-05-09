@@ -9,8 +9,9 @@ public class Main {
         rozwiazanie.calculateProfits();
 
         if(rozwiazanie.calculateBilans()==false) rozwiazanie.fictionalHeroes(); //jesli nie ma bilansu dodajemy fikcyjnych bohaterów
+        rozwiazanie.findMaxProfit();
 
-
+        System.out.println("koniec");
 
     }
 

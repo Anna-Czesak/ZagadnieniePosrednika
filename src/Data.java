@@ -68,9 +68,15 @@ public class Data {
     public void setDemand(int[] demand) {
         this.demand = demand;
     }
+    public void setDemandIndex(int index, int demand) {
+        this.demand[index]=demand;
+    }
 
     public void setSupply(int[] supply) {
         this.supply = supply;
+    }
+    public void setSupplyIndex(int index, int supply) {
+        this.supply[index]= supply;
     }
 
     public void ustawDane(){
@@ -96,11 +102,11 @@ public class Data {
                 shippingCost[i][j]=scanner.nextInt();
             }
         }
-        System.out.println(" Wprowadz demand... ");
+        System.out.println(" Wprowadz popyt... ");
         demand = new int[numberOfRecipients];
         for(int i = 0; i< demand.length; i++) demand[i]=scanner.nextInt();
 
-        System.out.println(" Wprowadz supply... ");
+        System.out.println(" Wprowadz podaz... ");
         supply = new int[numberOfSuppliers];
         for(int i = 0; i< supply.length; i++) supply[i]=scanner.nextInt();
     }
@@ -121,7 +127,7 @@ public class Data {
         System.out.print(" supply: ");
         for(int i = 0; i< supply.length; i++) System.out.print(supply[i]+ " ");
 
-        System.out.println(" JEDNOSTKOWE KOSZTY TRANSPORTU");
+        System.out.println(" \nJEDNOSTKOWE KOSZTY TRANSPORTU");
 
         System.out.print("\t");
         for(int i = 0; i< numberOfRecipients; i++) System.out.print("O"+(i+1)+ "\t");
