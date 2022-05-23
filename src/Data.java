@@ -79,7 +79,7 @@ public class Data {
         this.supply[index]= supply;
     }
 
-    public void ustawDane(){
+    public void ustawDane(){ 
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(" Wprowadz liczbe obiorcow: ");
@@ -89,17 +89,17 @@ public class Data {
 
         System.out.println(" Wprowadz ceny sprzedazy: ");
         sellingPrice = new int[numberOfRecipients];
-        for(int i = 0; i< sellingPrice.length; i++) sellingPrice[i]=scanner.nextInt();
+        for(int i = 0; i< sellingPrice.length; i++) sellingPrice[i]=scanner.nextInt(); //ustawienie ceny sprzedazy
 
         System.out.println(" Wprowadz koszty zakupu... ");
         buyingCost = new int[numberOfSuppliers];
-        for(int i = 0; i< buyingCost.length; i++) buyingCost[i]=scanner.nextInt();
+        for(int i = 0; i< buyingCost.length; i++) buyingCost[i]=scanner.nextInt(); //ustawienie ceny kupna
 
         shippingCost =new int[numberOfSuppliers][numberOfRecipients]; //tabela z kosztami transportu
         System.out.println(" Wprowadz koszty transportu... ");
         for (int i = 0; i< numberOfSuppliers; i++){
             for (int j = 0; j< numberOfRecipients; j++){
-                shippingCost[i][j]=scanner.nextInt();
+                shippingCost[i][j]=scanner.nextInt(); //wprowadzanie kosztów transpotu po kolei wierszami dostawcy
             }
         }
         System.out.println(" Wprowadz popyt... ");
@@ -110,7 +110,7 @@ public class Data {
         supply = new int[numberOfSuppliers];
         for(int i = 0; i< supply.length; i++) supply[i]=scanner.nextInt();
     }
-    public void wyswietlDane(){
+    public void wyswietlDane(){ //wyświetlanie danych
         System.out.println(" ilosc odbiorców: "+ numberOfRecipients);
         System.out.println(" ilosc dostawcow: "+ numberOfSuppliers);
 
