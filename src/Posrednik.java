@@ -79,7 +79,7 @@ public class Posrednik {
             showProfits();
     }
 
-    public void findMaxProfit(){
+    public void findMaxProfit(){ //metoda maksymalnego elementu macierzy
         int max =0;
         int imax=0;
         int jmax=0;
@@ -92,7 +92,7 @@ public class Posrednik {
                     }
                 }
             }
-        System.out.println(" imax = "+ imax + " jmax=" + jmax );
+        System.out.println(" imax = "+ imax + " jmax=" + jmax ); //wysujemy wspłrzędne maksymalnego elementu
 
 
         boolean t = true;
@@ -101,7 +101,6 @@ public class Posrednik {
 
 
         do{
-            System.out.println("Hejka :) ");
             t=false;
             for(int i=0; i<data.getNumberOfRecipients()-1; i++){
                 if ( data.getDemand()[i]!=0) t=true;
