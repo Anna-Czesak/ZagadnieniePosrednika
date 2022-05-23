@@ -8,45 +8,45 @@ public class Posrednik {
     }
     public Posrednik() {}
 
-    public void showProfits(){
+    public void showProfits(){ //funmckja wyświetlajaca tabele z zyskami
         System.out.println();
 
         System.out.println(" ZYSK POSREDNIKA ");
 
         System.out.print("\t");
-        for(int i = 0; i< data.getNumberOfRecipients(); i++) System.out.print("O"+(i+1)+ "\t"); //tworzenie tabeli wsadzic do funkcji
+        for(int i = 0; i< data.getNumberOfRecipients(); i++) System.out.print("O"+(i+1)+ "\t"); //wyświetlenie tabeli z zyskami 
 
-        for(int i = 0; i< data.getNumberOfSuppliers(); i++){
+        for(int i = 0; i< data.getNumberOfSuppliers(); i++){ 
             System.out.println();
-            System.out.print("D"+ (i+1)+"\t");
+            System.out.print("D"+ (i+1)+"\t"); //dostawcy
             for (int j = 0; j< data.getNumberOfRecipients(); j++){
-                System.out.print(profit[i][j]+ "\t");
+                System.out.print(profit[i][j]+ "\t"); 
             }
         }
     }
 
-    public void calculateProfits(){
+    public void calculateProfits(){ //obliczanie zysków pośrednika
         profit = new int[data.getNumberOfSuppliers()][data.getNumberOfRecipients()];
 
         System.out.println();
         for(int i = 0; i< data.getNumberOfSuppliers(); i++){
 
             for (int j = 0; j< data.getNumberOfRecipients(); j++){
-                profit[i][j]= data.getSellingPrice()[j]- data.getBuyingCost()[i]- data.getShippingCost()[i][j];
+                profit[i][j]= data.getSellingPrice()[j]- data.getBuyingCost()[i]- data.getShippingCost()[i][j]; //cena sprzedaży - kosz zakupu - koszt dostawy
             }
         }
         showProfits();
     }
 
-    public boolean calculateBilans(){
+    public boolean calculateBilans(){ //funckja obliczająca 
 
         int sumaPopyt=0;
         int sumaPodaz=0;
 
-        for(int i = 0; i< data.getDemand().length; i++)sumaPopyt+= data.getDemand()[i];
-        for(int i = 0; i< data.getSupply().length; i++)sumaPodaz+= data.getSupply()[i];
+        for(int i = 0; i< data.getDemand().length; i++)sumaPopyt+= data.getDemand()[i]; //obliczamy podaż
+        for(int i = 0; i< data.getSupply().length; i++)sumaPodaz+= data.getSupply()[i]; //obliczaamy popyt
 
-        if (sumaPopyt==sumaPodaz) {
+        if (sumaPopyt==sumaPodaz) { //jesli równe to mamy bilans
             System.out.println("Bilans zachowany");
             return true;
         }
@@ -56,10 +56,10 @@ public class Posrednik {
         }
     }
 
-    public void fictionalHeroes(){
+    public void fictionalHeroes(){ //dodawanie fikcyjnych bohaterów 
 
-            int nowaIloscDostawcow= data.getNumberOfSuppliers()+1;
-            int nowaIloscOdbiorcow= data.getNumberOfRecipients()+1;
+            int nowaIloscDostawcow= data.getNumberOfSuppliers()+1; //inkrementujemy dostawców
+            int nowaIloscOdbiorcow= data.getNumberOfRecipients()+1; //inkrementujemy liczbę odbiorców
 
             int [][] nowyZysk = new int[nowaIloscDostawcow][nowaIloscOdbiorcow]; //tworzymy większą tablice
 
@@ -73,7 +73,7 @@ public class Posrednik {
                 }
             }
             this.profit = nowyZysk;
-            this.data.setNumberOfSuppliers(nowaIloscDostawcow);
+            this.data.setNumberOfSuppliers(nowaIloscDostawcow); //ustawimy nowe wartości 
             this.data.setNumberOfRecipients(nowaIloscOdbiorcow);
 
             showProfits();
